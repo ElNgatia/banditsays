@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'dart:math';
+import 'package:image/image.dart' as img;
+import 'package:enough_ascii_art/enough_ascii_art.dart' as art;
 
 List<String> files = [];
 
@@ -66,5 +68,12 @@ void randomFile() {
   // Read the contents of the file
   final file = File(randomFile);
   final contents = file.readAsStringSync();
+
+  final byte = File('bandit.jpeg');
+  final image = img.decodeImage(byte.readAsBytesSync());
+  var ascii = art.convertImage(image!, maxWidth: 50,maxHeight: 50, invert: false);
+ 
+
   print(contents.split('%')[random.nextInt(contents.split('%').length)]);
+ print(ascii);
 }
